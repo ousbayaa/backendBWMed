@@ -32,9 +32,9 @@ router.post('/login', (req, res) => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = generateToken(user);
   
-          res.status(200).json({ message: `Welcome ${user.username}!!`});
+          res.status(200).json({ message: `Welcome ${user.username}!!`, token: token});
         } else {
-          res.status(401).json({ message: 'You shall not pass!' });
+          res.status(401).json({ message: 'Puff, Puff, Pass!', token: null });
         }
       })
       .catch(error => {

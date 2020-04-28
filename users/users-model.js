@@ -4,11 +4,11 @@ module.exports = {
   add,
   find,
   findBy,
-  findByStrand, // is this correct?
+  findByStrandId, // is this correct?
 };
 
 function find() {
-  return db('users').select('id', 'username', 'password', 'department');
+  return db('users').select('id', 'username', 'password');
 }
 
 function findBy(filter) {
@@ -18,9 +18,9 @@ function findBy(filter) {
 async function add(user) {
   const [id] = await db('users').insert(user, 'id');
 
-  return findByStrand(id);
+  return findByStrandId(id);
 }
 
-function findByStrand(id) {
+function findByStrandId(id) {
   return db('users').where({ id }).first();
 }
