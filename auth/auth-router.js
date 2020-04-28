@@ -42,3 +42,18 @@ router.post('/login', (req, res) => {
         res.status(500).json({ errorMessage: error.message });
       });
   });
+
+  function generateToken(user) {
+    const payload = {
+      userId: user.id,
+      username: user.username
+    };
+    const secret = secrets.jwtSecret;
+    const options = {
+      expiresIn: '1d'
+    }
+    
+    return jwt.sign(payload, secret, options);
+  }
+  
+  module.exports = router;
