@@ -26,7 +26,18 @@ router.get('/:id', (req, res) => {
         }
     })
     .catch(err => {
-        res.status(500).json({ message: 'Failed to Fetch Strains.'})
+        res.status(500).json({ message: 'Failed to Fetch Strains.'});
     });
 });
 
+router.post('/', (req, res) => {
+    const strainData = req.body;
+
+    Strains.addStrain(strainData)
+    .then(strain => {
+        res.status(201).json(strain);
+    })
+    .catch(err => {
+        res.status(500).json({ message: 'Failed to Create a New Strain' });
+    });
+});
