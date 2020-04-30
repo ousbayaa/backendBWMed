@@ -3,7 +3,9 @@ const db = require('../database/dbconfig');
 module.exports = {
     getStrains,
     addStrain,
-    getStrainById
+    getStrainById,
+    updateStrain,
+    deleteStrain
 }
 
 function getStrains(){
@@ -18,4 +20,14 @@ function addStrain(strain) {
 
 function getStrainById(id) {
     return db('strains').where({id}).first();
+}
+
+function updateStrain(strain, id) {
+    return db('strains').where({id}).update(strain).then(()=> {
+        return getStrainById(id);
+    })
+}
+
+function deleteStrain(id) {
+    return db('strains').where({id}).del();
 }
