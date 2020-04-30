@@ -5,7 +5,7 @@ const Strains = require('./strainModel');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    Strains.find()
+    Strains.getStrains()
     .then(strains => {
         res.json(strains);
     })
