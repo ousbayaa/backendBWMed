@@ -5,6 +5,7 @@ const cors = require('cors');
 const authRouter = require('../auth/auth-router');
 const usersRouter = require('../users/users-router');
 const authenticator = require('../auth/authenticator');
+const strainRouter = require('../strain/strainRouter');
 
 const server = express();
 
@@ -14,6 +15,7 @@ server.use(cors());
 
 server.use('/api/auth', authRouter);
 server.use('/api/users', authenticator, usersRouter);
+server.use('/api/strains', authenticator, strainRouter);
 
 server.get('/', (req, res) => {
     res.send('Up and Running!!');
