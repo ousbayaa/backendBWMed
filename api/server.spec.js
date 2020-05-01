@@ -38,8 +38,8 @@ describe('TESTS', () => {
     describe('Strain ID', () => {
         it('should receive a 404 if a user inputs invalid Strain ID', () => {
             return request(server)
-            .post('/api/strains/id')
-            
+            .post('/api/strains/:id')
+            .then(res => expect(res.status).toBe(404))
         })
     })
 });

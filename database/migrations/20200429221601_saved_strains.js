@@ -1,6 +1,7 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable('strains', tbl => {
+        tbl.increments();
         tbl.string('strain').notNullable().primary();
         tbl.string('type').notNullable()
         tbl.float('rating', 5).notNullable();
